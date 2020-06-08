@@ -8,7 +8,7 @@ defmodule Movies.Rating do
     belongs_to :movie, Movies.Movie
     belongs_to :user, Movies.User
 
-    timestamps(inserted_at: :created_at)
+    timestamps([{:inserted_at,:created_at}, {:updated_at, false}])
   end
 
   @doc false

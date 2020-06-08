@@ -1,0 +1,27 @@
+<section class="phx-hero">
+  <h1>Top 100 movies</h1>
+</section>
+
+<section class="row">
+  <table style="width:100%">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Title</th>
+        <th>Rating</th>
+        <th>Count</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <%= Enum.map Enum.with_index(@ranking), fn {r, i} ->  %>
+        <tr>
+          <td><%= i + 1 %></td>
+          <td><%= r.movie_title %></td>
+          <td><%= r.rating %></td>
+          <td><%= r.count %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</section>

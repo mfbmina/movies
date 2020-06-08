@@ -23,7 +23,10 @@ defmodule MoviesWeb do
 
       import Plug.Conn
       import MoviesWeb.Gettext
+      import Ecto.Query
+
       alias MoviesWeb.Router.Helpers, as: Routes
+      alias Movies.Repo
     end
   end
 
