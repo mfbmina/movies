@@ -2,6 +2,17 @@
   <h1>Top 100 movies</h1>
 </section>
 
+<section class="row" style="width:100%;">
+  <div class="clearfix">
+    <%= form_for @conn, Routes.ranking_path(@conn, :top), [method: :get], fn f -> %>
+      <%= select(f, :age_id, @ages) %>
+      <div class="float-right">
+        <%= submit [class: "btn pull-left"], do: "Submit" %>
+      </div>
+    <% end %>
+  </div>
+</section>
+
 <section class="row">
   <table style="width:100%">
     <thead>
