@@ -37,20 +37,16 @@ defmodule Movies.RankingTest do
     end
 
     defp create_ratings(context) do
-      Enum.map(0..20, fn _ ->
-        user = insert!(:user)
-        insert!(:rating, %{user_id: user.id, movie_id: context.movie_1.id})
-      end)
+      for i <- 0..21, i > 0 do
+        user_1 = insert!(:user)
+        insert!(:rating, %{user_id: user_1.id, movie_id: context.movie_1.id})
 
-      Enum.map(0..20, fn _ ->
-        user = insert!(:user, %{age_id: 2})
-        insert!(:rating, %{user_id: user.id, movie_id: context.movie_2.id, rating: 4})
-      end)
+        user_2 = insert!(:user, %{age_id: 2})
+        insert!(:rating, %{user_id: user_2.id, movie_id: context.movie_2.id, rating: 4})
 
-      Enum.map(0..20, fn _ ->
-        user = insert!(:user, %{age_id: 3})
-        insert!(:rating, %{user_id: user.id, movie_id: context.movie_3.id})
-      end)
+        user_3 = insert!(:user, %{age_id: 3})
+        insert!(:rating, %{user_id: user_3.id, movie_id: context.movie_3.id})
+      end
 
       :ok
     end
