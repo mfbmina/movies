@@ -6,14 +6,11 @@ defmodule Movies.Ranking do
   alias Movies.Repo
   alias Movies.User
 
-  def top_100(nil) do
-    base_query
-      |> Repo.all
-  end
 
-  def top_100(age_id) do
-    base_query
-      |> where([r, m], r.user_id in ^user_ids_for_age(age_id))
+  def top_100(%{age_id: age_id, genre_title: genre_title}) do
+    base_query()
+      |> apply_age_id_filter(age_id)
+      |> apply_genre_title_filter(genre_title)
       |> Repo.all
   end
 
@@ -25,6 +22,23 @@ defmodule Movies.Ranking do
       |> having([r, m], count(r.id) > 20)
       |> order_by([r, m], desc: [fragment("round(?, 2)", avg(r.rating)), count(r.id)])
       |> limit(100)
+  end
+
+  defp apply_age_id_filter(query, age_id) do
+    case age_id do
+      nil -> query
+      "" -> query
+      _ -> query |> where([r, m], r.user_id in ^user_ids_for_age(age_id))
+    end
+  end
+
+  defp apply_genre_title_filter(query, genre_title) do
+    title = "%#{genre_title}%"
+
+    case title do
+      "%%" -> query
+      _ -> query |> where([r, m], like(m.genres, ^title))
+    end
   end
 
   defp user_ids_for_age(age_id) do

@@ -5,7 +5,8 @@
 <section class="row" style="width:100%;">
   <div class="clearfix">
     <%= form_for @conn, Routes.ranking_path(@conn, :top), [method: :get], fn f -> %>
-      <%= select(f, :age_id, @ages) %>
+      <%= select(f, :age_id, @ages, prompt: "Select a age group") %>
+      <%= select(f, :genre_title, @genres, prompt: "Select a genre") %>
       <div class="float-right">
         <%= submit [class: "btn pull-left"], do: "Submit" %>
       </div>
