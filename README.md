@@ -1,5 +1,9 @@
 # Movies App
 
+## Objectives
+
+Learn more about Elixir and Phoenix.
+
 ## Task 1: Top 100
 
 You will work with the [MovieLens Dataset (ml-1m)](http://grouplens.org/datasets/movielens/) that has 4k movies, 6k users and 1m ratings. To save you some time we prepared a MySQL and Postgres dump for you to get you started. Pick the RDBS you are most comfortable with.
@@ -128,3 +132,9 @@ year of release)
 - Some Movie_ids do not correspond to a movie due to accidental duplicate
 entries and/or test entries
 - Movies are mostly entered by hand, so errors and inconsistencies may exist
+
+## Missing features
+
+- Dockerize the application
+- Write tests
+- Add caching to solve the performance issues
